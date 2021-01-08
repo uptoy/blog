@@ -9,10 +9,17 @@ import Post from './containers/Post'
 
 const  App:React.FC= () => {
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <TopMedia />
+        <Route path="/" exact component={Home}  />
+        <Route path="/contact-us" component={ContactUS}  />
+        <Route path="/post/:postId" component={Post}  />
+      </div>
+    </Router>
   );
 }
 
 export default App;
+
