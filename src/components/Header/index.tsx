@@ -1,7 +1,6 @@
 import React from 'react'
 
-
-const Header = (props:any) => {
+const Header: React.FC = (props:any) => {
     return (
         <header className="header">
           <nav className="headerMenu">
@@ -9,6 +8,9 @@ const Header = (props:any) => {
             <a href="#" >About Us</a>
             <a href="#" >Contact Us</a>
           </nav>
+          <div>
+            Link
+          </div>
         </header>
       )
 }
