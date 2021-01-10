@@ -1,6 +1,6 @@
 import React from 'react'
 import BlogPost from '../../components/BlogPost'
-import Sidebar from '../../components/SideBar'
+import Sidebar from '../../components/Sidebar'
 
 const Post:React.FC = (props)=>{
     return (

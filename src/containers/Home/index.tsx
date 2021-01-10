@@ -1,24 +1,24 @@
 import React from 'react'
 import './style.css'
 import Card from '../../components/UI/Card'
-import SideBar from '../../components/SideBar'
+import SideBar from '../../components/Sidebar'
 import RecentPosts from './RecentPosts'
-
+import Layout from '../../components/Layout/'
 import blogData from '../../data/blog.json'
 
 const SideImage:React.FC = (props:any) => {
     return (
         <div style={{height:`${props.height}px`}}>
-            <img src={props:src} alt ="" />
+            <img src={props.src} alt ="" />
         </div>
     )
 }
 
 const ImageGallery:React.FC = props => (
-        <div className="galleryPost" style={props.gallaryStyle}>
+        <div className="galleryPost" style={props.galleryStyle}>
                 <section style={{ width: props.largeWidth }}>
                     <div className="mainImageWrapper">
-                        <img src={require('../../blogPostImages/' + props.imagesArray[1])} alt="" />
+                        <img src={require('../../blogPostImages/' + props.imagesArray[2])} alt="" />
                     </div>
                 </section>
                 <section className={"sideImageWrapper"} style={{ width: props.smallWidth }}>
@@ -42,9 +42,7 @@ const Home:React.FC = props => {
     }
 
     const sideImageHeight = galleryHeight /3;
-
-    const imgAr = blogData.blog.map(post => post.blogImage)
-
+    const imgAr = blogData.data.map(post => post.blogImage)
     return(
         <div>
             <Card>
@@ -53,17 +51,12 @@ const Home:React.FC = props => {
                     smallWidth="30%"
                     sideImageHeight={sideImageHeight}
                     galleryStyle={galleyStyle}
-                    imagesArray={
-
-                    }
-                    //image={[]}
+                    imagesArray={imgAr}
                 />
             </Card>
-
-            <section className="HomeContainer">
-                    <RecentPosts style={{width:'70%'}} />
-                    <SideBar />
-            </section>
+            <Layout>
+                <RecentPosts style={{width:'70%'}} />
+            </Layout>
         </div>
     )
 }

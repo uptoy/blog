@@ -3,8 +3,19 @@ import './style.css'
 import Card from '../UI/Card'
 import blogPost from '../../data/blog.json'
 
-const  BlogPost:React.FC= (props) => {
-    const [post,setPost] = useState({
+interface IPost {
+        id:string;
+        blogCategory:string;
+        blogTitle:string;
+        postedOn:string;
+        author:string;
+        blogImage:string;
+        blogText:string;
+}
+
+
+const  BlogPost:React.FC= (props) =>  {
+    const [post,setPost] = useState<IPost>({
         id:"",
         blogCategory:"",
         blogTitle:"",
@@ -13,22 +24,24 @@ const  BlogPost:React.FC= (props) => {
         blogImage:"",
         blogText:""
     })
-    const [postId,setPostId] = useState('')
+    const [slug,setSlug] = useState<any>("")
 
     useEffect(()=>{
-        const postId =props.match.params.postId;
-        const post = blogPost.data.find(post=>post.id == postId)
+        const slug:any =props.slug;
+        const post:any = blogPost.data.find(post=>post.id == slug)
         setPost(post)
-        setPostId(postId)
-    },[post,props.match.params.postId])
+        setSlug(slug)
+    },[post,props.params.slug])
+
+    if(post.blogImage = "")return null
 
     return (
         <div className="blogPostContainer">
             <Card >
             <div className="blogHeader">
                 <span className="blogCategory">{post.blogCategory}</span>
-                <h1 className="postTitle">{post.blog.Title}</h1>
-                <span className="postedBy">posted on {props.postedOn} by {post.author}</span>
+                <h1 className="postTitle">{post.blogTitle}</h1>
+                <span className="postedBy">posted on {post.postedOn} by {post.author}</span>
             </div>
             <div className="postImageContainer">
                 <img src={require('../../blogPostImages/' + post.blogImage)} alt='Post Image'/>
